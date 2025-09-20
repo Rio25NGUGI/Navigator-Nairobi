@@ -6,6 +6,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Logo } from "@/components/icons/logo";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import ContactForm from "@/components/layout/contact-form";
 
 const navLinks = [
   { href: "/explore", label: "Explore Suburbs" },
@@ -17,6 +19,7 @@ const navLinks = [
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -82,9 +85,23 @@ export default function Header() {
             </span>
           </Link>
           <div className="flex items-center space-x-2">
-             <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                <Link href="/contact">Book a Consultation</Link>
-              </Button>
+            <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+              <DialogTrigger asChild>
+                <Button className="bg-accent hover:bg-accent/90 text-accent-foreground">Book a Consultation</Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle className="font-headline text-2xl">Book a Free Consultation</DialogTitle>
+                  <DialogDescription>
+                    For our Full Concierge service. Fill out the form below and we'll be in touch to schedule a call.
+                  </DialogDescription>
+                </DialogHeader>
+                <ContactForm
+                  service="full-concierge"
+                  onSuccess={() => setDialogOpen(false)}
+                />
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </div>

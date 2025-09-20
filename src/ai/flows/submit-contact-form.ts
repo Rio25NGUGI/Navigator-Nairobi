@@ -11,7 +11,7 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 
-export const ContactFormInputSchema = z.object({
+const ContactFormInputSchema = z.object({
   name: z.string().describe('The name of the person submitting the form.'),
   email: z.string().email().describe('The email address of the person.'),
   service: z.string().optional().describe('The service the person is interested in.'),
@@ -19,7 +19,7 @@ export const ContactFormInputSchema = z.object({
 });
 export type ContactFormInput = z.infer<typeof ContactFormInputSchema>;
 
-export const ContactFormOutputSchema = z.object({
+const ContactFormOutputSchema = z.object({
   success: z.boolean().describe('Whether the form submission was successful.'),
   message: z.string().describe('A confirmation message.'),
 });
@@ -45,10 +45,18 @@ const submitContactFormFlow = ai.defineFlow(
 
     console.log('New contact form submission:', input);
 
+    let confirmationMessage = `Thank you, ${input.name}! Your message has been received. We'll get back to you shortly.`;
+
+    if (input.service === 'full-concierge') {
+      confirmationMessage = `Thank you, ${input.name}! We've received your request for a Full Concierge consultation. Our team will email you shortly to schedule a call.`;
+    } else if (input.service) {
+       confirmationMessage = `Thank you, ${input.name}! Your message regarding '${input.service}' has been received.`;
+    }
+
     // For this prototype, we'll just simulate a successful submission.
     return {
       success: true,
-      message: `Thank you, ${input.name}! Your message regarding '${input.service}' has been received.`,
+      message: confirmationMessage,
     };
   }
 );
