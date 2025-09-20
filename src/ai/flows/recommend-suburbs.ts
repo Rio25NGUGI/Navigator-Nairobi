@@ -13,7 +13,7 @@ import { z } from 'genkit';
 import { suburbs as suburbData, type Suburb } from '@/lib/suburbs-data';
 
 // Define input schema based on the quiz questions
-export const RecommendSuburbsInputSchema = z.object({
+const RecommendSuburbsInputSchema = z.object({
   budget: z
     .string()
     .describe('The user\'s housing budget (e.g., economy, mid-range, luxury).'),
@@ -29,7 +29,7 @@ export const RecommendSuburbsInputSchema = z.object({
 export type RecommendSuburbsInput = z.infer<typeof RecommendSuburbsInputSchema>;
 
 
-export const SuburbRecommendationSchema = z.object({
+const SuburbRecommendationSchema = z.object({
   slug: z.string().describe('The slug of the recommended suburb.'),
   matchReasoning: z.string().describe('A brief explanation of why this suburb is a good match, starting with a score like "Match Score: 9/10".'),
   highlights: z.array(z.string()).describe('A few key highlights of the suburb that align with the user\'s priorities.')
@@ -37,7 +37,7 @@ export const SuburbRecommendationSchema = z.object({
 export type SuburbRecommendation = z.infer<typeof SuburbRecommendationSchema>;
 
 
-export const RecommendSuburbsOutputSchema = z.array(SuburbRecommendationSchema).max(3);
+const RecommendSuburbsOutputSchema = z.array(SuburbRecommendationSchema).max(3);
 export type RecommendSuburbsOutput = z.infer<typeof RecommendSuburbsOutputSchema>;
 
 
