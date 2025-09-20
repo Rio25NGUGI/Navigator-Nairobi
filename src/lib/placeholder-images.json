@@ -1,3 +1,52 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-skyline",
+      "description": "Nairobi skyline at dusk",
+      "imageUrl": "https://picsum.photos/seed/nairobi-skyline/1920/1080",
+      "imageHint": "nairobi skyline"
+    },
+    {
+      "id": "suburb-karen",
+      "description": "Lush greenery in Karen suburb",
+      "imageUrl": "https://picsum.photos/seed/karen/600/400",
+      "imageHint": "green landscape"
+    },
+    {
+      "id": "suburb-westlands",
+      "description": "Modern buildings in Westlands",
+      "imageUrl": "https://picsum.photos/seed/westlands/600/400",
+      "imageHint": "modern city"
+    },
+    {
+      "id": "suburb-lavington",
+      "description": "A quiet residential street in Lavington",
+      "imageUrl": "https://picsum.photos/seed/lavington/600/400",
+      "imageHint": "suburban street"
+    },
+    {
+      "id": "testimonial-1",
+      "description": "A happy client",
+      "imageUrl": "https://picsum.photos/seed/client1/100/100",
+      "imageHint": "person smiling"
+    },
+    {
+      "id": "testimonial-2",
+      "description": "Another happy client",
+      "imageUrl": "https://picsum.photos/seed/client2/100/100",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "blog-1",
+      "description": "A marketplace in Nairobi",
+      "imageUrl": "https://picsum.photos/seed/blog1/600/400",
+      "imageHint": "local market"
+    },
+    {
+      "id": "blog-2",
+      "description": "Coffee plantation",
+      "imageUrl": "https://picsum.photos/seed/blog2/600/400",
+      "imageHint": "coffee beans"
+    }
+  ]
 }
