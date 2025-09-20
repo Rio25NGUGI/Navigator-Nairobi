@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CheckCircle } from "lucide-react";
 import { PlaceHolderImages, type ImagePlaceholder } from "@/lib/placeholder-images";
+import { suburbs } from "@/lib/suburbs-data";
 
 const getImage = (id: string): ImagePlaceholder => {
   const image = PlaceHolderImages.find((img) => img.id === id);
@@ -21,23 +22,7 @@ const getImage = (id: string): ImagePlaceholder => {
   return image;
 };
 
-const featuredSuburbs = [
-  {
-    name: "Karen",
-    description: "Known for its large, leafy properties, upscale restaurants, and serene environment.",
-    imageId: "suburb-karen"
-  },
-  {
-    name: "Westlands",
-    description: "A vibrant, cosmopolitan area with bustling nightlife, shopping malls, and modern apartments.",
-    imageId: "suburb-westlands"
-  },
-  {
-    name: "Lavington",
-    description: "A blend of residential tranquility and urban convenience, popular with families.",
-    imageId: "suburb-lavington"
-  },
-];
+const featuredSuburbs = suburbs.slice(0, 3);
 
 const testimonials = [
   {
@@ -135,7 +120,7 @@ export default function Home() {
                     </CardContent>
                     <CardFooter>
                       <Button asChild variant="link" className="text-primary p-0 h-auto">
-                        <Link href={`/suburbs/${suburb.name.toLowerCase()}`}>Learn More &rarr;</Link>
+                        <Link href={`/suburbs/${suburb.slug}`}>Learn More &rarr;</Link>
                       </Button>
                     </CardFooter>
                   </Card>

@@ -25,6 +25,24 @@
       "imageHint": "suburban street"
     },
     {
+      "id": "suburb-kilimani",
+      "description": "A bustling street in Kilimani",
+      "imageUrl": "https://picsum.photos/seed/kilimani/600/400",
+      "imageHint": "city street"
+    },
+    {
+      "id": "suburb-runda",
+      "description": "An upscale house in Runda",
+      "imageUrl": "https://picsum.photos/seed/runda/600/400",
+      "imageHint": "luxury house"
+    },
+    {
+      "id": "suburb-parklands",
+      "description": "A tree-lined avenue in Parklands",
+      "imageUrl": "https://picsum.photos/seed/parklands/600/400",
+      "imageHint": "calm street"
+    },
+    {
       "id": "testimonial-1",
       "description": "A happy client",
       "imageUrl": "https://picsum.photos/seed/client1/100/100",

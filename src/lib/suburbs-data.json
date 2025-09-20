@@ -1,0 +1,52 @@
+{
+  "suburbs": [
+    {
+      "name": "Karen",
+      "slug": "karen",
+      "description": "Known for its large, leafy properties, upscale restaurants, and serene environment.",
+      "imageId": "suburb-karen",
+      "vibe": "Affluent, tranquil, and spacious",
+      "tags": ["Families", "Expats", "Luxury Living", "Nature"]
+    },
+    {
+      "name": "Westlands",
+      "slug": "westlands",
+      "description": "A vibrant, cosmopolitan area with bustling nightlife, shopping malls, and modern apartments.",
+      "imageId": "suburb-westlands",
+      "vibe": "Dynamic, modern, and commercial",
+      "tags": ["Young Professionals", "Nightlife", "Shopping", "Convenience"]
+    },
+    {
+      "name": "Lavington",
+      "slug": "lavington",
+      "description": "A blend of residential tranquility and urban convenience, popular with families.",
+      "imageId": "suburb-lavington",
+      "vibe": "Green, residential, and upmarket",
+      "tags": ["Families", "Schools", "Quiet Living"]
+    },
+    {
+        "name": "Kilimani",
+        "slug": "kilimani",
+        "description": "A bustling, diverse neighborhood with a mix of apartments, offices, and restaurants.",
+        "imageId": "suburb-kilimani",
+        "vibe": "Lively, convenient, and diverse",
+        "tags": ["Young Professionals", "Dining", "Entertainment"]
+    },
+    {
+        "name": "Runda",
+        "slug": "runda",
+        "description": "An exclusive, highly secure gated community known for its large villas and diplomatic missions.",
+        "imageId": "suburb-runda",
+        "vibe": "Exclusive, secure, and prestigious",
+        "tags": ["Diplomats", "Expats", "Luxury", "Security"]
+    },
+    {
+        "name": "Parklands",
+        "slug": "parklands",
+        "description": "A well-established area with a strong sense of community, known for its hospitals and social clubs.",
+        "imageId": "suburb-parklands",
+        "vibe": "Established, communal, and central",
+        "tags": ["Healthcare", "Community", "Central Location"]
+    }
+  ]
+}
