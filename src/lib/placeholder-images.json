@@ -56,15 +56,27 @@
     },
     {
       "id": "blog-1",
-      "description": "A marketplace in Nairobi",
+      "description": "A colorful matatu in Nairobi",
       "imageUrl": "https://picsum.photos/seed/blog1/600/400",
-      "imageHint": "local market"
+      "imageHint": "colorful bus"
     },
     {
       "id": "blog-2",
-      "description": "Coffee plantation",
+      "description": "A cozy cafe with a laptop on the table",
       "imageUrl": "https://picsum.photos/seed/blog2/600/400",
-      "imageHint": "coffee beans"
+      "imageHint": "cafe laptop"
+    },
+    {
+      "id": "blog-3",
+      "description": "View of the Great Rift Valley",
+      "imageUrl": "https://picsum.photos/seed/blog3/600/400",
+      "imageHint": "valley landscape"
+    },
+    {
+      "id": "blog-4",
+      "description": "Graffiti art on a wall in Nairobi",
+      "imageUrl": "https://picsum.photos/seed/blog4/600/400",
+      "imageHint": "street art"
     }
   ]
 }

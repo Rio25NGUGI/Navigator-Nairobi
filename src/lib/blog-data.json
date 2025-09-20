@@ -1,0 +1,28 @@
+{
+  "blogPosts": [
+    {
+      "title": "A Guide to Nairobi's Matatu Culture",
+      "slug": "a-guide-to-nairobis-matatu-culture",
+      "description": "Understanding the city's iconic public transport system, from the art to the etiquette.",
+      "imageId": "blog-1"
+    },
+    {
+      "title": "The Best Cafes for Remote Work in Nairobi",
+      "slug": "the-best-cafes-for-remote-work-in-nairobi",
+      "description": "Find your new favorite spot to work and sip on amazing Kenyan coffee.",
+      "imageId": "blog-2"
+    },
+    {
+      "title": "Weekend Getaways: Exploring the Great Rift Valley",
+      "slug": "weekend-getaways-exploring-the-great-rift-valley",
+      "description": "Discover stunning landscapes and adventures just a short drive from the city.",
+      "imageId": "blog-3"
+    },
+    {
+      "title": "Nairobi's Thriving Art Scene: Galleries and Street Art",
+      "slug": "nairobis-thriving-art-scene-galleries-and-street-art",
+      "description": "A tour of the most vibrant creative spaces and public art in the city.",
+      "imageId": "blog-4"
+    }
+  ]
+}

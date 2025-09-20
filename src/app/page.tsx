@@ -8,6 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CheckCircle } from "lucide-react";
 import { PlaceHolderImages, type ImagePlaceholder } from "@/lib/placeholder-images";
 import { suburbs } from "@/lib/suburbs-data";
+import { blogPosts } from "@/lib/blog-data";
 
 const getImage = (id: string): ImagePlaceholder => {
   const image = PlaceHolderImages.find((img) => img.id === id);
@@ -23,6 +24,7 @@ const getImage = (id: string): ImagePlaceholder => {
 };
 
 const featuredSuburbs = suburbs.slice(0, 3);
+const featuredBlogPosts = blogPosts.slice(0, 2);
 
 const testimonials = [
   {
@@ -36,21 +38,6 @@ const testimonials = [
     title: "Digital Nomad",
     quote: "As a remote worker, finding a neighborhood with good internet and co-working spaces was key. The quiz pointed me to Westlands, and it's been fantastic!",
     imageId: "testimonial-2"
-  }
-];
-
-const blogPosts = [
-  {
-    title: "A Guide to Nairobi's Matatu Culture",
-    description: "Understanding the city's iconic public transport system.",
-    imageId: "blog-1",
-    slug: "matatu-culture"
-  },
-  {
-    title: "The Best Cafes for Remote Work in Nairobi",
-    description: "Find your new favorite spot to work and sip on amazing Kenyan coffee.",
-    imageId: "blog-2",
-    slug: "remote-work-cafes"
   }
 ];
 
@@ -235,7 +222,7 @@ export default function Home() {
               Tips, guides, and stories about life in Nairobi.
             </p>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {blogPosts.map((post) => {
+              {featuredBlogPosts.map((post) => {
                 const image = getImage(post.imageId);
                 return (
                   <Card key={post.slug} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col sm:flex-row">
