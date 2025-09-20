@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -44,21 +45,17 @@ export type RecommendSuburbsOutput = z.infer<typeof RecommendSuburbsOutputSchema
 export async function recommendSuburbs(
   input: RecommendSuburbsInput
 ): Promise<RecommendSuburbsOutput> {
-  return recommendSuburbsFlow(input);
-}
+  // Create a string representation of the available suburbs for the prompt
+  const suburbsListForPrompt = suburbData.map(s => (
+      `- ${s.name} (slug: ${s.slug}): ${s.description} Best for: ${s.tags.join(', ')}. Vibe: ${s.vibe}`
+  )).join('\n');
 
 
-// Create a string representation of the available suburbs for the prompt
-const suburbsListForPrompt = suburbData.map(s => (
-    `- ${s.name} (slug: ${s.slug}): ${s.description} Best for: ${s.tags.join(', ')}. Vibe: ${s.vibe}`
-)).join('\n');
-
-
-const prompt = ai.definePrompt({
-  name: 'recommendSuburbsPrompt',
-  input: { schema: RecommendSuburbsInputSchema },
-  output: { schema: RecommendSuburbsOutputSchema },
-  prompt: `You are a Nairobi relocation expert. Your goal is to recommend the top 3 suburbs for a user based on their quiz answers.
+  const prompt = ai.definePrompt({
+    name: 'recommendSuburbsPrompt',
+    input: { schema: RecommendSuburbsInputSchema },
+    output: { schema: RecommendSuburbsOutputSchema },
+    prompt: `You are a Nairobi relocation expert. Your goal is to recommend the top 3 suburbs for a user based on their quiz answers.
 
 Analyze the user's preferences:
 - Budget: {{{budget}}}
@@ -75,16 +72,19 @@ Based on the user's preferences, evaluate each suburb and select the three that 
 
 Return the response as a JSON array of 3 objects, ordered from the best match to the third-best match.
 `,
-});
+  });
 
-const recommendSuburbsFlow = ai.defineFlow(
-  {
-    name: 'recommendSuburbsFlow',
-    inputSchema: RecommendSuburbsInputSchema,
-    outputSchema: RecommendSuburbsOutputSchema,
-  },
-  async input => {
-    const { output } = await prompt(input);
-    return output || [];
-  }
-);
+  const recommendSuburbsFlow = ai.defineFlow(
+    {
+      name: 'recommendSuburbsFlow',
+      inputSchema: RecommendSuburbsInputSchema,
+      outputSchema: RecommendSuburbsOutputSchema,
+    },
+    async input => {
+      const { output } = await prompt(input);
+      return output || [];
+    }
+  );
+
+  return recommendSuburbsFlow(input);
+}
