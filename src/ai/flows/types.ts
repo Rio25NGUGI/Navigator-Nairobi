@@ -1,8 +1,8 @@
 
-'use server';
-
 /**
  * @fileOverview Type definitions and Zod schemas for AI flows.
+ * This file does not contain 'use server' and can be safely imported
+ * into client and server components.
  */
 
 import { z } from 'zod';
