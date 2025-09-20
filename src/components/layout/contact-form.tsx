@@ -2,25 +2,20 @@
 
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { useToast } from '@/hooks/use-toast';
 import { useState, useTransition } from 'react';
 import { Loader2 } from 'lucide-react';
 import { submitContactForm } from '@/ai/flows/submit-contact-form';
+import { type ContactFormInput, ContactFormInputSchema } from '@/ai/flows/types';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { Textarea } from '../ui/textarea';
 
-const contactFormSchema = z.object({
-    name: z.string().min(2, 'Name must be at least 2 characters.'),
-    email: z.string().email('Please enter a valid email address.'),
-    service: z.string().optional(),
-    message: z.string().min(10, 'Message must be at least 10 characters.'),
-});
+const contactFormSchema = ContactFormInputSchema;
 
-type ContactFormData = z.infer<typeof contactFormSchema>;
+type ContactFormData = ContactFormInput;
 
 interface ContactFormProps {
     service?: string;

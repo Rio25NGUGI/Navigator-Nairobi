@@ -3,25 +3,16 @@
 
 /**
  * @fileOverview An AI agent for generating blog content.
- *
- * - generateBlogContent - A function that generates blog content based on a topic.
- * - GenerateBlogContentInput - The input type for the generateBlogContent function.
- * - GenerateBlogContentOutput - The return type for the generateBlogContent function.
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import {
+  GenerateBlogContentInputSchema,
+  type GenerateBlogContentInput,
+  GenerateBlogContentOutputSchema,
+  type GenerateBlogContentOutput
+} from './types';
 
-export const GenerateBlogContentInputSchema = z.object({
-  topic: z.string().describe('The topic to generate content about.'),
-});
-export type GenerateBlogContentInput = z.infer<typeof GenerateBlogContentInputSchema>;
-
-export const GenerateBlogContentOutputSchema = z.object({
-  title: z.string().describe('The title of the blog post.'),
-  content: z.string().describe('The generated blog content for the topic.'),
-});
-export type GenerateBlogContentOutput = z.infer<typeof GenerateBlogContentOutputSchema>;
 
 const prompt = ai.definePrompt({
   name: 'generateBlogContentPrompt',

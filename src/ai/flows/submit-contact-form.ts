@@ -2,28 +2,16 @@
 'use server';
 /**
  * @fileOverview A flow for handling contact form submissions.
- *
- * - submitContactForm - A function that handles the contact form submission.
- * - ContactFormInput - The input type for the submitContactForm function.
- * - ContactFormOutput - The return type for the submitContactForm function.
  */
 
 import { ai } from '@/ai/genkit';
-import { z } from 'genkit';
+import {
+  ContactFormInputSchema,
+  type ContactFormInput,
+  ContactFormOutputSchema,
+  type ContactFormOutput
+} from './types';
 
-export const ContactFormInputSchema = z.object({
-  name: z.string().describe('The name of the person submitting the form.'),
-  email: z.string().email().describe('The email address of the person.'),
-  service: z.string().optional().describe('The service the person is interested in.'),
-  message: z.string().describe('The message content.'),
-});
-export type ContactFormInput = z.infer<typeof ContactFormInputSchema>;
-
-export const ContactFormOutputSchema = z.object({
-  success: z.boolean().describe('Whether the form submission was successful.'),
-  message: z.string().describe('A confirmation message.'),
-});
-export type ContactFormOutput = z.infer<typeof ContactFormOutputSchema>;
 
 const submitContactFormFlow = ai.defineFlow(
   {

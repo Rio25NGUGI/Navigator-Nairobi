@@ -3,7 +3,6 @@
 import { useState, useTransition } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import Header from '@/components/layout/header';
@@ -37,11 +36,8 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Progress } from '@/components/ui/progress';
 import { Loader2, Sparkles } from 'lucide-react';
 
-import {
-  recommendSuburbs,
-  type RecommendSuburbsInput,
-  type SuburbRecommendation,
-} from '@/ai/flows/recommend-suburbs';
+import { recommendSuburbs } from '@/ai/flows/recommend-suburbs';
+import { type RecommendSuburbsInput, type SuburbRecommendation, RecommendSuburbsInputSchema } from '@/ai/flows/types';
 import { getSuburbBySlug } from '@/lib/suburbs-data';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -80,17 +76,9 @@ const priorities = [
   { id: 'security', label: 'High Security' },
 ];
 
-const formSchema = z.object({
-  budget: z.string().min(1, 'Please select a budget.'),
-  lifestyle: z.string().min(1, 'Please select a lifestyle preference.'),
-  priorities: z
-    .array(z.string())
-    .refine(value => value.some(item => item), {
-      message: 'You have to select at least one item.',
-    }),
-});
+const formSchema = RecommendSuburbsInputSchema;
 
-type FormData = z.infer<typeof formSchema>;
+type FormData = RecommendSuburbsInput;
 
 const steps = [
   { id: 'budget', title: 'Your Budget', fields: ['budget'] },
