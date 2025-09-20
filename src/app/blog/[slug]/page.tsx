@@ -8,6 +8,39 @@ import { generateBlogContent } from "@/ai/flows/generate-blog-content";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import type { Metadata, ResolvingMetadata } from 'next';
+
+type Props = {
+    params: { slug: string }
+}
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const post = getBlogPostBySlug(params.slug);
+
+  if (!post) {
+    return {
+      title: 'Blog Post Not Found | Nairobi Navigator',
+      description: "Tips, guides, and stories about life in Nairobi.",
+    }
+  }
+ 
+  const previousImages = (await parent).openGraph?.images || []
+ 
+  const image = PlaceHolderImages.find(img => img.id === post.imageId) || { imageUrl: 'https://picsum.photos/seed/nairobi-app-screenshot/1200/630' };
+
+  return {
+    title: `${post.title} | Nairobi Navigator Blog`,
+    description: post.description,
+    openGraph: {
+      title: `${post.title} | Nairobi Navigator Blog`,
+      description: post.description,
+      images: [image.imageUrl, ...previousImages],
+    },
+  }
+}
 
 const getImage = (id: string): ImagePlaceholder => {
     const image = PlaceHolderImages.find((img) => img.id === id);

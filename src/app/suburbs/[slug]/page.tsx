@@ -9,6 +9,40 @@ import { generateBlogContent } from "@/ai/flows/generate-blog-content";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import type { Metadata, ResolvingMetadata } from 'next';
+
+type Props = {
+    params: { slug: string }
+}
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const suburb = getSuburbBySlug(params.slug);
+
+  if (!suburb) {
+    return {
+      title: 'Suburb Not Found | Nairobi Navigator',
+      description: "Explore Nairobi's best suburbs with our comprehensive guides.",
+    }
+  }
+ 
+  const previousImages = (await parent).openGraph?.images || []
+ 
+  const image = PlaceHolderImages.find(img => img.id === suburb.imageId) || { imageUrl: 'https://picsum.photos/seed/nairobi-app-screenshot/1200/630' };
+
+  return {
+    title: `${suburb.name} | Nairobi Navigator`,
+    description: suburb.description,
+    openGraph: {
+      title: `${suburb.name} | Nairobi Navigator`,
+      description: suburb.description,
+      images: [image.imageUrl, ...previousImages],
+    },
+  }
+}
+
 
 const getImage = (id: string): ImagePlaceholder => {
     const image = PlaceHolderImages.find((img) => img.id === id);
