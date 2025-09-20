@@ -12,9 +12,8 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
-// The input used to be `suburbName`, we are making it more generic to be `topic`
 const GenerateBlogContentInputSchema = z.object({
-  suburbName: z.string().describe('The topic to generate content about.'),
+  topic: z.string().describe('The topic to generate content about.'),
 });
 export type GenerateBlogContentInput = z.infer<typeof GenerateBlogContentInputSchema>;
 
@@ -33,7 +32,7 @@ export async function generateBlogContent(input: GenerateBlogContentInput): Prom
 
   Generate an engaging and informative blog post about the following topic:
 
-  Topic: {{{suburbName}}}
+  Topic: {{{topic}}}
 
   Your blog post should be well-structured, easy to read, and at least 4-5 paragraphs long.
   The title should be the same as the topic provided.

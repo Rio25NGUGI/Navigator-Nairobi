@@ -39,7 +39,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
     
     // We can reuse the suburb content generator for this, just passing the post title
     const [aiContent, otherPosts] = await Promise.all([
-        generateBlogContent({ suburbName: post.title }),
+        generateBlogContent({ topic: post.title }),
         (async () => {
             // Get 2 other random posts for "Explore More"
             return blogPosts.filter(p => p.slug !== post.slug).sort(() => 0.5 - Math.random()).slice(0, 2);
