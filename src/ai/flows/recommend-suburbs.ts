@@ -42,12 +42,6 @@ const RecommendSuburbsOutputSchema = z.array(SuburbRecommendationSchema).max(3);
 export type RecommendSuburbsOutput = z.infer<typeof RecommendSuburbsOutputSchema>;
 
 
-export async function recommendSuburbs(
-  input: RecommendSuburbsInput
-): Promise<RecommendSuburbsOutput> {
-  return recommendSuburbsFlow(input);
-}
-
 // Create a string representation of the available suburbs for the prompt
 const suburbsListForPrompt = suburbData.map(s => (
     `- ${s.name} (slug: ${s.slug}): ${s.description} Best for: ${s.tags.join(', ')}. Vibe: ${s.vibe}`
@@ -88,3 +82,9 @@ const recommendSuburbsFlow = ai.defineFlow(
     return output || [];
   }
 );
+
+export async function recommendSuburbs(
+  input: RecommendSuburbsInput
+): Promise<RecommendSuburbsOutput> {
+  return recommendSuburbsFlow(input);
+}

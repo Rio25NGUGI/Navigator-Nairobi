@@ -25,11 +25,6 @@ const ContactFormOutputSchema = z.object({
 });
 export type ContactFormOutput = z.infer<typeof ContactFormOutputSchema>;
 
-
-export async function submitContactForm(input: ContactFormInput): Promise<ContactFormOutput> {
-  return submitContactFormFlow(input);
-}
-
 const submitContactFormFlow = ai.defineFlow(
   {
     name: 'submitContactFormFlow',
@@ -59,3 +54,7 @@ const submitContactFormFlow = ai.defineFlow(
     };
   }
 );
+
+export async function submitContactForm(input: ContactFormInput): Promise<ContactFormOutput> {
+  return submitContactFormFlow(input);
+}

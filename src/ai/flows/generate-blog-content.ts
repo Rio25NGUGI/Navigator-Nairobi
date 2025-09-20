@@ -23,10 +23,6 @@ const GenerateBlogContentOutputSchema = z.object({
 });
 export type GenerateBlogContentOutput = z.infer<typeof GenerateBlogContentOutputSchema>;
 
-export async function generateBlogContent(input: GenerateBlogContentInput): Promise<GenerateBlogContentOutput> {
-  return generateBlogContentFlow(input);
-}
-
 const prompt = ai.definePrompt({
   name: 'generateBlogContentPrompt',
   input: {schema: GenerateBlogContentInputSchema},
@@ -54,3 +50,7 @@ const generateBlogContentFlow = ai.defineFlow(
     return output!;
   }
 );
+
+export async function generateBlogContent(input: GenerateBlogContentInput): Promise<GenerateBlogContentOutput> {
+  return generateBlogContentFlow(input);
+}
