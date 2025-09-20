@@ -11,7 +11,7 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 
-const ContactFormInputSchema = z.object({
+export const ContactFormInputSchema = z.object({
   name: z.string().describe('The name of the person submitting the form.'),
   email: z.string().email().describe('The email address of the person.'),
   service: z.string().optional().describe('The service the person is interested in.'),
@@ -19,7 +19,7 @@ const ContactFormInputSchema = z.object({
 });
 export type ContactFormInput = z.infer<typeof ContactFormInputSchema>;
 
-const ContactFormOutputSchema = z.object({
+export const ContactFormOutputSchema = z.object({
   success: z.boolean().describe('Whether the form submission was successful.'),
   message: z.string().describe('A confirmation message.'),
 });

@@ -12,12 +12,12 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
-const GenerateBlogContentInputSchema = z.object({
+export const GenerateBlogContentInputSchema = z.object({
   topic: z.string().describe('The topic to generate content about.'),
 });
 export type GenerateBlogContentInput = z.infer<typeof GenerateBlogContentInputSchema>;
 
-const GenerateBlogContentOutputSchema = z.object({
+export const GenerateBlogContentOutputSchema = z.object({
   title: z.string().describe('The title of the blog post.'),
   content: z.string().describe('The generated blog content for the topic.'),
 });
