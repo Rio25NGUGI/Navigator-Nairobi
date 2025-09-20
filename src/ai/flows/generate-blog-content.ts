@@ -24,11 +24,14 @@ const GenerateBlogContentOutputSchema = z.object({
 export type GenerateBlogContentOutput = z.infer<typeof GenerateBlogContentOutputSchema>;
 
 export async function generateBlogContent(input: GenerateBlogContentInput): Promise<GenerateBlogContentOutput> {
-    const prompt = ai.definePrompt({
-    name: 'generateBlogContentPrompt',
-    input: {schema: GenerateBlogContentInputSchema},
-    output: {schema: GenerateBlogContentOutputSchema},
-    prompt: `You are an expert content creator and travel writer specializing in Nairobi, Kenya.
+  return generateBlogContentFlow(input);
+}
+
+const prompt = ai.definePrompt({
+  name: 'generateBlogContentPrompt',
+  input: {schema: GenerateBlogContentInputSchema},
+  output: {schema: GenerateBlogContentOutputSchema},
+  prompt: `You are an expert content creator and travel writer specializing in Nairobi, Kenya.
 
   Generate an engaging and informative blog post about the following topic:
 
@@ -38,19 +41,16 @@ export async function generateBlogContent(input: GenerateBlogContentInput): Prom
   The title should be the same as the topic provided.
   The content should be engaging and provide real value to someone interested in life and travel in Nairobi.
   `,
-  });
+});
 
-  const generateBlogContentFlow = ai.defineFlow(
-    {
-      name: 'generateBlogContentFlow',
-      inputSchema: GenerateBlogContentInputSchema,
-      outputSchema: GenerateBlogContentOutputSchema,
-    },
-    async input => {
-      const {output} = await prompt(input);
-      return output!;
-    }
-  );
-
-  return generateBlogContentFlow(input);
-}
+const generateBlogContentFlow = ai.defineFlow(
+  {
+    name: 'generateBlogContentFlow',
+    inputSchema: GenerateBlogContentInputSchema,
+    outputSchema: GenerateBlogContentOutputSchema,
+  },
+  async input => {
+    const {output} = await prompt(input);
+    return output!;
+  }
+);
