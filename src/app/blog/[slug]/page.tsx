@@ -36,11 +36,16 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
     }
 
     const heroImage = getImage(post.imageId);
+    
     // We can reuse the suburb content generator for this, just passing the post title
-    const aiContent = await generateBlogContent({ suburbName: post.title });
+    const [aiContent, otherPosts] = await Promise.all([
+        generateBlogContent({ suburbName: post.title }),
+        (async () => {
+            // Get 2 other random posts for "Explore More"
+            return blogPosts.filter(p => p.slug !== post.slug).sort(() => 0.5 - Math.random()).slice(0, 2);
+        })()
+    ]);
 
-    // Get 2 other random posts for "Explore More"
-    const otherPosts = blogPosts.filter(p => p.slug !== post.slug).sort(() => 0.5 - Math.random()).slice(0, 2);
 
     return (
         <div className="flex flex-col min-h-screen bg-background">

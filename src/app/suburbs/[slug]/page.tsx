@@ -37,10 +37,14 @@ export default async function SuburbPage({ params }: { params: { slug: string } 
     }
 
     const heroImage = getImage(suburb.imageId);
-    const aiContent = await generateBlogContent({ suburbName: suburb.name });
-
-    // Get 2 other random suburbs for "Explore More"
-    const otherSuburbs = suburbs.filter(s => s.slug !== suburb.slug).sort(() => 0.5 - Math.random()).slice(0, 2);
+    
+    const [aiContent, otherSuburbs] = await Promise.all([
+        generateBlogContent({ suburbName: suburb.name }),
+        (async () => {
+            // Get 2 other random suburbs for "Explore More"
+            return suburbs.filter(s => s.slug !== suburb.slug).sort(() => 0.5 - Math.random()).slice(0, 2);
+        })()
+    ]);
 
     return (
         <div className="flex flex-col min-h-screen bg-background">
